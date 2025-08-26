@@ -10,55 +10,64 @@
     --background: 0 0% 100%;
     --foreground: 215 25% 27%;
     
-    /* Trust & Security Theme */
-    --primary: 217 91% 60%; /* Professional Blue */
+    /* Blue Theme System */
+    --primary: 217 91% 60%; /* Main Blue */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 217 91% 75%;
+    --primary-light: 217 91% 75%;
+    --primary-lighter: 217 91% 90%;
+    --primary-dark: 217 91% 45%;
+    --primary-darker: 217 91% 30%;
     
-    /* Safety & Alert Colors */
-    --secondary: 43 96% 56%; /* Warm Amber */
-    --secondary-foreground: 43 96% 15%;
+    /* Blue Shade Variants */
+    --blue-50: 217 91% 95%;
+    --blue-100: 217 91% 90%;
+    --blue-200: 217 91% 80%;
+    --blue-300: 217 91% 70%;
+    --blue-400: 217 91% 60%;
+    --blue-500: 217 91% 50%;
+    --blue-600: 217 91% 40%;
+    --blue-700: 217 91% 30%;
+    --blue-800: 217 91% 20%;
+    --blue-900: 217 91% 10%;
     
-    --success: 142 76% 36%; /* Safe Green */
+    /* Secondary Colors */
+    --secondary: 217 20% 93%;
+    --secondary-foreground: 217 25% 27%;
+    
+    --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     
-    --danger: 0 84% 60%; /* Emergency Red */
+    --danger: 0 84% 60%;
     --danger-foreground: 0 0% 100%;
     
-    --warning: 43 96% 56%; /* Alert Amber */
+    --warning: 43 96% 56%;
     --warning-foreground: 43 96% 15%;
     
     /* UI Colors */
     --card: 0 0% 100%;
     --card-foreground: 215 25% 27%;
     
-    --muted: 215 20% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 217 20% 96%;
+    --muted-foreground: 217 16% 47%;
     
-    --accent: 215 20% 93%;
-    --accent-foreground: 215 25% 27%;
+    --accent: 217 20% 93%;
+    --accent-foreground: 217 25% 27%;
     
-    --border: 215 20% 88%;
-    --input: 215 20% 88%;
+    --border: 217 20% 88%;
+    --input: 217 20% 88%;
     --ring: 217 91% 60%;
     
     /* Child Tracking Colors */
-    --child-1: 280 100% 70%; /* Purple */
-    --child-2: 160 100% 50%; /* Teal */
-    --child-3: 25 95% 53%; /* Orange */
+    --child-1: 280 100% 70%;
+    --child-2: 160 100% 50%;
+    --child-3: 25 95% 53%;
     
     /* Safe Zone Colors */
-    --safe-zone: 142 76% 36%; /* Green with opacity */
+    --safe-zone: 142 76% 36%;
     --safe-zone-border: 142 76% 26%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(280 100% 70%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(215 20% 98%) 100%);
-    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 76% 46%) 100%);
-    --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 84% 70%) 100%);
-    
     /* Shadows */
-    --shadow-soft: 0 2px 15px -3px hsl(215 25% 27% / 0.07), 0 10px 20px -2px hsl(215 25% 27% / 0.04);
+    --shadow-soft: 0 2px 15px -3px hsl(217 25% 27% / 0.07), 0 10px 20px -2px hsl(217 25% 27% / 0.04);
     --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.15);
     --shadow-success: 0 4px 20px hsl(142 76% 36% / 0.25);
     --shadow-danger: 0 4px 20px hsl(0 84% 60% / 0.25);
@@ -84,33 +93,56 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark Mode Background */
+    --background: 217 32% 8%;
+    --foreground: 217 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* Blue Theme Dark Mode */
+    --primary: 217 91% 70%;
+    --primary-foreground: 217 32% 8%;
+    --primary-light: 217 91% 80%;
+    --primary-lighter: 217 91% 85%;
+    --primary-dark: 217 91% 60%;
+    --primary-darker: 217 91% 50%;
+    
+    /* Blue Shades Dark Mode */
+    --blue-50: 217 32% 12%;
+    --blue-100: 217 32% 15%;
+    --blue-200: 217 32% 20%;
+    --blue-300: 217 32% 30%;
+    --blue-400: 217 91% 60%;
+    --blue-500: 217 91% 70%;
+    --blue-600: 217 91% 75%;
+    --blue-700: 217 91% 80%;
+    --blue-800: 217 91% 85%;
+    --blue-900: 217 91% 90%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    /* UI Colors Dark Mode */
+    --card: 217 32% 10%;
+    --card-foreground: 217 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217 32% 15%;
+    --secondary-foreground: 217 20% 95%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 15%;
+    --muted-foreground: 217 20% 65%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217 32% 18%;
+    --accent-foreground: 217 20% 95%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --border: 217 32% 18%;
+    --input: 217 32% 18%;
+    --ring: 217 91% 70%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors Dark Mode */
+    --success: 142 76% 45%;
+    --success-foreground: 217 32% 8%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --danger: 0 84% 70%;
+    --danger-foreground: 217 32% 8%;
+
+    --warning: 43 96% 65%;
+    --warning-foreground: 217 32% 8%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

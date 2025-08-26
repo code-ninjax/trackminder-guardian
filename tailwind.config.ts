@@ -64,10 +64,8 @@ export default {
 				'safe-zone-border': 'hsl(var(--safe-zone-border))'
 			},
 			backgroundImage: {
-				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)',
-				'gradient-success': 'var(--gradient-success)',
-				'gradient-danger': 'var(--gradient-danger)'
+				'blue-gradient': 'linear-gradient(135deg, hsl(var(--blue-400)), hsl(var(--blue-600)))',
+				'blue-subtle': 'linear-gradient(145deg, hsl(var(--blue-50)), hsl(var(--blue-100)))'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',

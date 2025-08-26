@@ -8,12 +8,13 @@ import {
   Settings, 
   Menu,
   BellRing,
-  MapPin
+  X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -37,14 +38,39 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <div className="min-h-screen bg-background flex">
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-card border-r shadow-soft transition-all duration-300 flex flex-col`}>
+      <div className={`
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} 
+        ${sidebarOpen ? 'w-64' : 'lg:w-16'} 
+        fixed lg:relative z-50 lg:z-auto
+        bg-card border-r shadow-soft transition-all duration-300 
+        flex flex-col h-screen
+      `}>
         {/* Logo */}
-        <div className="p-4 border-b">
+        <div className="p-4 border-b flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Shield className="h-8 w-8 text-primary" />
-            {sidebarOpen && <span className="text-xl font-bold text-primary">SafeTrack</span>}
+            {(sidebarOpen || window.innerWidth >= 1024) && (
+              <span className="text-xl font-bold text-primary">SafeTrack</span>
+            )}
           </div>
+          {/* Mobile close button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden"
+          >
+            <X className="h-4 w-4" />
+          </Button>
         </div>
 
         {/* Navigation */}
@@ -53,11 +79,21 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <Button
               key={item.path}
               variant={isActive(item.path) ? "default" : "ghost"}
-              className={`w-full justify-start ${isActive(item.path) ? 'bg-primary text-primary-foreground shadow-glow' : 'hover:bg-accent'}`}
-              onClick={() => navigate(item.path)}
+              className={`w-full justify-start ${
+                isActive(item.path) 
+                  ? 'bg-primary text-primary-foreground shadow-glow' 
+                  : 'hover:bg-accent'
+              }`}
+              onClick={() => {
+                navigate(item.path);
+                // Close sidebar on mobile after navigation
+                if (window.innerWidth < 1024) {
+                  setSidebarOpen(false);
+                }
+              }}
             >
-              <item.icon className={`h-5 w-5 ${sidebarOpen ? 'mr-3' : ''}`} />
-              {sidebarOpen && (
+              <item.icon className={`h-5 w-5 ${(sidebarOpen || window.innerWidth >= 1024) ? 'mr-3' : ''}`} />
+              {(sidebarOpen || window.innerWidth >= 1024) && (
                 <>
                   <span>{item.label}</span>
                   {item.badge && (
@@ -71,8 +107,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           ))}
         </nav>
 
-        {/* Collapse Toggle */}
-        <div className="p-4 border-t">
+        {/* Collapse Toggle - Desktop only */}
+        <div className="p-4 border-t hidden lg:block">
           <Button
             variant="ghost"
             size="sm"
@@ -86,14 +122,29 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-0">
         {/* Top Navigation */}
-        <header className="bg-card border-b shadow-soft h-16 flex items-center justify-between px-6">
+        <header className="bg-card border-b shadow-soft h-16 flex items-center justify-between px-4 lg:px-6">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-foreground">Child Safety Dashboard</h1>
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+            <h1 className="text-lg lg:text-2xl font-bold text-foreground hidden sm:block">
+              Child Safety Dashboard
+            </h1>
+            <h1 className="text-lg font-bold text-foreground sm:hidden">SafeTrack</h1>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 lg:space-x-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Notifications */}
             <Button variant="ghost" size="sm" className="relative">
               <BellRing className="h-5 w-5" />
@@ -102,21 +153,21 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               </Badge>
             </Button>
 
-            {/* Status Indicator */}
-            <div className="flex items-center space-x-2">
+            {/* Status Indicator - Hidden on mobile */}
+            <div className="hidden md:flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
               <span className="text-sm text-muted-foreground">All Children Safe</span>
             </div>
 
-            {/* Back to Landing */}
-            <Button variant="outline" onClick={() => navigate('/')}>
+            {/* Back to Landing - Hidden on small screens */}
+            <Button variant="outline" onClick={() => navigate('/')} className="hidden sm:flex">
               Back to Home
             </Button>
           </div>
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="flex-1 p-4 lg:p-6 overflow-auto">
           {children}
         </main>
       </div>
